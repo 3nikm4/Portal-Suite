@@ -1,0 +1,23 @@
+<h1>Listing device_problem_statuses</h1>
+
+<table>
+  <tr>
+    <th>Device problem status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @device_problem_statuses.each do |device_problem_status| %>
+  <tr>
+    <td><%= device_problem_status.device_problem_status %></td>
+    <td><%= link_to 'Show', device_problem_status %></td>
+    <td><%= link_to 'Edit', edit_device_problem_status_path(device_problem_status) %></td>
+    <td><%= link_to 'Destroy', device_problem_status, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device problem status', new_device_problem_status_path %>

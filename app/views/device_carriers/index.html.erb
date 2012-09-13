@@ -1,0 +1,23 @@
+<h1>Listing device_carriers</h1>
+
+<table>
+  <tr>
+    <th>Device carrier</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @device_carriers.each do |device_carrier| %>
+  <tr>
+    <td><%= device_carrier.device_carrier %></td>
+    <td><%= link_to 'Show', device_carrier %></td>
+    <td><%= link_to 'Edit', edit_device_carrier_path(device_carrier) %></td>
+    <td><%= link_to 'Destroy', device_carrier, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device carrier', new_device_carrier_path %>

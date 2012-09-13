@@ -1,0 +1,37 @@
+<%= form_for(@device_test) do |f| %>
+  <% if @device_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device_test.errors.count, "error") %> prohibited this device_test from being saved:</h2>
+
+      <ul>
+      <% @device_test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :device_id %><br />
+    <%= f.number_field :device_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tom24 %><br />
+    <%= f.check_box :tom24 %>
+  </div>
+  <div class="field">
+    <%= f.label :forced %><br />
+    <%= f.check_box :forced %>
+  </div>
+  <div class="field">
+    <%= f.label :enrolled %><br />
+    <%= f.check_box :enrolled %>
+  </div>
+  <div class="field">
+    <%= f.label :completed %><br />
+    <%= f.check_box :completed %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

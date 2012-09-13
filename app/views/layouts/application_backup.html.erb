@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WirelessDx Portal</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="container">
+
+  <div id="header">
+    <div id="user_bar">
+      <% if user_signed_in? %>
+        <span class="welcome">Welcome, <%= current_user.first_name + " " + current_user.last_name %></span><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "signout" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="left_nav">
+    <% if user_signed_in? %>
+
+    <div id="tabs">
+    <span>Call Log</span><br />
+      <%= link_to "Calls", calls_path, :class => "menulinks" %><br />
+      <%= link_to "New Call", new_call_path, :class => "sublinks" %><br/>
+      <%= link_to "Contacts", contacts_path, :class => "menulinks" %><br />
+      <%= link_to "Search", search_path, :class => "lastmenulinks" %><br />
+    </div>
+
+    <% if current_user.role?("Admin") || current_user.role?("Staff") || current_user.role?("Auditor")%>
+    <div id="tabs">  
+      <span>Inventory</span><br />
+
+        <%= link_to "Devices", devices_path, :class => "menulinks" %><br />
+
+        <% if can? :create, @device %>
+          <%= link_to "New Device", new_device_path, :class => "sublinks" %><br />
+        <% end %>
+
+        <%= link_to "Disposables", disposables_path, :class => "menulinks" %><br />
+
+        <% if can? :create, @disposable %>
+          <%= link_to "New Disposable", new_disposable_path, :class => "sublinks" %><br />
+        <% end %>
+
+        <%= link_to "Patients", patients_path, :class => "menulinks" %><br />
+
+        <% if can? :create, @patient %>
+          <%= link_to "New Patient", new_patient_path, :class => "sublinks" %><br />
+        <% end %>
+
+        <%= link_to "Device Assignments", device_assignments_path, :class => "menulinks" %><br />
+
+        <% if can? :create, @device_assignment %>
+          <%= link_to "New Assignment", new_device_assignment_path, :class => "sublinks" %><br />
+        <% end %>
+
+        <%= link_to "Practices", practices_path, :class => "lastmenulinks" %><br />
+
+        <% if can? :create, @practice %>
+          <%= link_to "New Practice", new_practice_path, :class => "lastsublinks" %><br />
+        <% end %>
+
+      <% end %>
+    </div>
+
+
+    <% if current_user.role?("Admin") %>
+      <div id="tabs">
+        <span>Admin</span><br />
+        <% if can? :update, @user %>
+          <%= link_to "Users", users_path, :class => "lastmenulinks" %><br />
+        <% end %>
+
+        <% if can? :create, @user %>
+          <%= link_to "New User", new_user_path, :class => "lastsublinks" %><br />
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if current_user.role?("Admin") || current_user.role?("Staff") %>
+    <div id="tabs">
+
+      <span>Reports</span><br />
+      <%= link_to "All Locations Summary", {:action => "all_locations_summary", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "Full Inventory", {:action => "full_inventory", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "Last Known Location", {:action => "last_known_location", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "Problematic Devices", {:action => "problematic_devices", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "Devices In Use", {:action => "devices_in_use", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "RMA Devices", {:action => "rma_devices", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "On-Site Devices", {:action => "onsite_devices", :controller => "reports"}, :class => "menulinks" %><br />
+      <%= link_to "Unreturned Devices", {:action => "unreturned_devices", :controller => "reports"}, :class => "lastmenulinks" %><br />
+
+    </div>
+    <% end %>
+    
+  <% end %>
+
+  </div>
+
+  <div id="content">
+
+    <div id="roundbox">
+      <div id="errors">
+          <% flash.each do |name, msg| %>
+            <span id="notice"><%= content_tag :div, msg, :id => "flash_#{name}" %></span>
+          <% end %>
+      </div>
+
+	    <%= yield %>
+	  </div>
+  
+  </div>
+  
+  <div id="footer">
+  </div>
+
+</div>
+</body>
+</html>

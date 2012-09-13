@@ -1,0 +1,31 @@
+<h1>Listing contacts</h1>
+
+<table class="pretty">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Contact type</th>
+    <% if current_user.role?("Admin") %>
+      <th></th>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @contacts.each do |contact| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= contact.first_name %></td>
+    <td><%= contact.last_name %></td>
+    <td><%= contact.contact_type.contact_type %></td>
+    <% if current_user.role?("Admin") %>
+      <td><%= link_to 'Show', contact %></td>
+      <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+      <td><%= link_to 'Destroy', contact, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contact', new_contact_path %>

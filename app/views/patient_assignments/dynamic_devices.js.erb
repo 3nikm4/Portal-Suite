@@ -1,0 +1,5 @@
+$('#patient_assignment_device_id').empty();
+$('#patient_assignment_device_id').append('<option value="">Select a Device</option>')
+<% for device in @devices %>
+      $('#patient_assignment_device_id').append('<option value="<%= device.id %>"><%= device.serial_number %></option>')
+<% end %>

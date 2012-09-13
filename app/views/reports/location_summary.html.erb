@@ -1,0 +1,72 @@
+
+
+  <h3><%= @location.practice.practice_name %>:&nbsp;<%= @location.location_name %></h3>
+  
+  <p>
+    <blockquote>
+      <%= @location.location_contact %><br />
+      <%= @location.location_street1 %><br />
+      <% if !@location.location_street2.empty? %>
+        <%= @location.location_street2 %><br />
+      <% end %>
+      <%= @location.location_city %>,&nbsp;<%= @location.location_state %>&nbsp;<%= @location.location_zip %><br />
+    </blockquote>
+  </p>
+
+  <p>
+    <blockquote>
+      <table>
+        <tr>
+          <td>MCT in stock:</td><td><strong><%= @location.mct_count %></strong></td>
+        </tr>
+        <tr>
+          <td>ScottCare in stock:</td><td><strong><%= @location.scottcare_count %></strong></td>
+        </tr>
+        <tr>
+          <td>ERW920 in stock:</td><td><strong><%= @location.event_count %></strong></td>
+        </tr>
+        <tr>
+          <td>Active Patients:</td><td><strong><%= @location.active_patients.count %></strong></td>
+        </tr>
+      </table>
+    </blockquote>
+  </p>
+  <% if !@location.active_devices.empty? %>
+    <p>
+      <h4>Devices in Stock</h4>
+      <blockquote>
+        <table border='0' cellspacing='0' cellpadding='2'>
+          <tr class="lead">
+            <th>Serial Number</th>
+            <th>Type</th>
+          </tr>
+            <% @location.active_devices.each do |device| %>
+              <tr bgcolor="#<%= cycle('c3c3c3','ffffff') %>">
+                <td><%= device.serial_number %></td>
+                <td><%= device.device_type.device_type %></td>
+              </tr>
+            <% end %>
+        </table>
+      </blockquote>
+    </p>
+   <% end %>
+  <% if !@location.active_patients.empty? %>
+    <p>
+      <h4>Active Patients</h4>
+      <blockquote>
+        <table border='0' cellspacing='0' cellpadding='2'>
+          <tr class="lead">
+            <th>Patient Name</th>
+            <th>Active On</th>
+          </tr>
+
+          <% @location.active_patients.each do |patient| %>
+            <tr bgcolor="#<%= cycle('c3c3c3','ffffff') %>">
+              <td><%= patient.patient_full_name %></td>
+              <td><%= patient.device_assignments.first.start_date %></td>
+            </tr>
+          <% end %>
+        </table>
+      </blockquote>
+    </p>
+  <% end %>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @call.user.full_name %>
+</p>
+
+<p>
+  <b>Start Time:</b>
+  <%= @call.call_start %>
+</p>
+
+<p>
+  <b>End Time:</b>
+  <%= @call.call_end %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @call.call_type.call_type %>
+</p>
+
+<p>
+  <b>Notes:</b>
+  <%= @call.call_notes %>
+</p>
+
+<p>
+  <b>Call location:</b>
+  <%= @call.call_location.call_location %>
+</p>
+
+<p>
+  <b>Call type:</b>
+  <% if @call.call_direction == TRUE %>
+    Inbound
+  <% else %>
+    Outbound
+  <% end %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @call.contact.full_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_call_path(@call) %> |
+<%= link_to 'Back', calls_path %>
+

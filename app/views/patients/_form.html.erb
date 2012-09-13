@@ -1,0 +1,53 @@
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :location_id, "Location" %><br />
+      <%= f.collection_select(:location_id, Location.order("location_name ASC"), :id, :location_name, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_select :dob, :start_year => 1900 %>
+  </div>
+  <div class="field">
+    <%= f.label :address_street1 %><br />
+    <%= f.text_field :address_street1 %>
+  </div>
+  <div class="field">
+    <%= f.label :address_street2 %><br />
+    <%= f.text_field :address_street2 %>
+  </div>
+  <div class="field">
+    <%= f.label :address_city %><br />
+    <%= f.text_field :address_city %>
+  </div>
+  <div class="field">
+    <%= f.label :address_state %><br />
+    <%= f.text_field :address_state %>
+  </div>
+  <div class="field">
+    <%= f.label :address_zip %><br />
+    <%= f.text_field :address_zip %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

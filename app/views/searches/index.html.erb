@@ -1,0 +1,127 @@
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+  $(".assignment_device_select").chosen();
+  });
+</script>
+
+
+<h1>Search Options</h1>
+
+
+<div id="callsearches">
+<fieldset>
+<legend><h3>Call Search Options</h3></legend>
+  <div class="search">
+    <fieldset>
+      <legend>Patient / Contact</legend>
+        <%= form_tag('/searches/patient') do -%>
+         <span style="font-family:"Times New Roman" Times, serif; font-size:13px;"><%= select_tag "uid", options_from_collection_for_select(@contacts, "id", "full_name"), :prompt => "Select a Patient", :class => "chosenpicker", :style => "width:200px;" %></span>
+          <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px;" %>
+        <% end %>
+    </fieldset>
+  </div>
+
+
+  <div class="search">
+    <fieldset>
+      <legend>Technician</legend>
+        
+	    <%= form_tag('/searches/rep') do -%>
+         <div class="styled-select"><%= select_tag "uid", options_from_collection_for_select(@users, "id", "full_name"), :prompt => "Select a Tech" %></div>
+          <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px; margin:-25px 0px 0px 0px;" %>
+        <% end %>
+	    
+    </fieldset>
+  </div>
+
+
+  <div class="search">
+    <fieldset>
+      <legend>Call Type</legend>
+      
+	    <%= form_tag('/searches/type') do -%>
+        <div class="styled-select"><%= select_tag "uid", options_from_collection_for_select(@calltypes, "id", "call_type"), :prompt => "Select a Call Type" %> </div>
+        <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px; margin:-25px 0px 0px 0px;" %>
+      <% end %>
+
+    </fieldset>
+  </div>
+
+
+  <div class="search">
+    <fieldset>
+      <legend>Date</legend>
+        <%= form_tag('/searches/date') do -%>
+          <div class="styled-select1"><%= select_date Date.today, :prefix => :search_date, %></div>
+          <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px; margin:-25px 0px 0px 0px;" %>
+        <% end %>
+    </fieldset>
+  </div>
+
+</fieldset>
+</div>
+
+<div id="inventory_searches">
+
+<fieldset>
+  <legend><h3>Inventory Search Options</h3></legend>  
+
+  <div class="search">
+    <fieldset>
+      <legend>Device</legend>
+
+        <%= form_tag('/searches/device') do -%>
+        <span style="font-family:"Times New Roman" Times, serif; font-size:13px;">
+        <%= select_tag "uid", options_from_collection_for_select(@devices, "id", "serial_number"), :prompt => "Select a Device", :class => "chzn-select", :style => "width:200px;" %>
+        </span>
+        <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px;" %>
+        <% end %>
+    </fieldset>
+  </div>  
+
+</fieldset>
+</div>
+
+
+<div id="assignment_searches">
+<fieldset>
+  <legend><h3>Assignment Search Options</h3></legend>
+  
+  <div class="search">
+    <fieldset>
+      <legend>Assignment Device</legend>
+
+        <%= form_tag('/searches/assignment_device') do -%>
+        <span style="font-family:"Times New Roman" Times, serif; font-size:13px;">
+        <%= select_tag "uid", options_from_collection_for_select(@devices, "id", "serial_number"), :prompt => "Select a Device", :class => "assignment_device_select", :style => "width:200px;" %>
+        </span>
+        <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px;" %>
+        <% end %>
+    </fieldset>
+  </div>  
+
+  <div class="search">
+    <fieldset>
+      <legend>Assignment Patient</legend>
+
+        <%= form_tag('/searches/assignment_patient') do -%>
+         <div class="styled-select"><%= select_tag "uid", options_from_collection_for_select(@patients, "id", "full_name_location"), :prompt => "Select a Patient" %></div>
+          <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px;" %>
+        <% end %>
+    </fieldset>
+  </div>  
+
+  <div class="search">
+    <fieldset>
+      <legend>Assignment Location</legend>
+        <%= form_tag('/searches/assignment_location') do -%>
+         <div class="styled-select"><%= select_tag "uid", options_from_collection_for_select(@locations, "id", "location_name"), :prompt => "Select a Location" %></div>
+          <%= submit_tag "Search", :style => "display:block-inline; height:25px; font-size:13px; font-family:verdana; float:right; padding:0px 3px 0px 3px;" %>
+        <% end %>
+    </fieldset>
+  </div>
+
+</fieldset>
+</div>
+

@@ -1,0 +1,60 @@
+<h1>Devices</h1>
+<div id="newcall_loc">
+ <%= link_to 'New Device', new_device_path, :class => "newcall" %>
+</div>
+<div align="center">
+  <%= will_paginate @devices %>
+</div>
+<br />
+
+<table class="pretty">
+
+  <tr>
+    <th><%= sortable "device_status_id", "Status" %></th>
+    <th><%= sortable "device_type_id", "Type" %></th>
+    <th><%= sortable "serial_number", "Serial Number" %></th>
+    <th><%= sortable "device_carrier_id", "Carrier" %></th>
+    <th>Comments</th>
+
+    <th></th>
+    <% if can? :update, @device %>
+      <th></th>
+    <% end %>
+    <% if can? :destroy, @device %>
+      <th></th>
+    <% end %>
+  </tr>
+
+
+
+<% @devices.each do |device| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= device.device_status.device_status %></td>
+    <td><%= device.device_type.device_type %></td>
+    <td><%= device.serial_number %></td>
+    <td><%= device.device_carrier.device_carrier %></td>
+    <td>
+      <% if device.comment.length > 25 %>
+        <%= device.comment[0..24] + "..." %>
+      <% else %>
+        <%= device.comment %>
+      <% end %>
+    </td>
+    <td><%= link_to 'Show', device %></td>
+  <% if can? :update, @device %>
+    <td><%= link_to 'Edit', edit_device_path(device) %></td>
+  <% end %>
+  <% if can? :destroy, @device %>
+    <td><%= link_to 'Destroy', device, confirm: 'Are you sure?', method: :delete %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div align="center">
+  <%= will_paginate @devices %>
+</div>
+
+
+

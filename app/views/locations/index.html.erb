@@ -1,0 +1,48 @@
+<h1>Listing locations</h1>
+
+<table align="center" width="90%" border="solid 1px" cellpadding="2" cellspacing="0">
+
+  <tr>
+    <th>Practice</th>
+    <th>Location type</th>
+    <th>Location name</th>
+    <th>Location street1</th>
+    <th>Location street2</th>
+    <th>Location city</th>
+    <th>Location state</th>
+    <th>Location zip</th>
+    <th>Location contact</th>
+    <th>Par level event</th>
+    <th>Par level mct</th>
+    <th>Alert amount</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @locations.each do |location| %>
+  <tr>
+    <td><%= location.practice_id %></td>
+    <td><%= location.location_type_id %></td>
+    <td><%= location.location_name %></td>
+    <td><%= location.location_street1 %></td>
+    <td><%= location.location_street2 %></td>
+    <td><%= location.location_city %></td>
+    <td><%= location.location_state %></td>
+    <td><%= location.location_zip %></td>
+    <td><%= location.location_contact %></td>
+    <td><%= location.par_level_event %></td>
+    <td><%= location.par_level_mct %></td>
+    <td><%= location.alert_amount %></td>
+    <td><%= location.active %></td>
+    <td><%= link_to 'Show', location %></td>
+    <td><%= link_to 'Edit', edit_location_path(location) %></td>
+    <td><%= link_to 'Destroy', location, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Location', new_location_path %>

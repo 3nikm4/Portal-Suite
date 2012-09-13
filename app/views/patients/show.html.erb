@@ -1,0 +1,53 @@
+<p>
+  <b>Location:</b>
+  <%= @patient.location.location_name %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @patient.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @patient.last_name %>
+</p>
+
+<p>
+  <b>Address street1:</b>
+  <%= @patient.address_street1 %>
+</p>
+
+<p>
+  <b>Address street2:</b>
+  <%= @patient.address_street2 %>
+</p>
+
+<p>
+  <b>Address city:</b>
+  <%= @patient.address_city %>
+</p>
+
+<p>
+  <b>Address state:</b>
+  <%= @patient.address_state %>
+</p>
+
+<p>
+  <b>Address zip:</b>
+  <%= @patient.address_zip %>
+</p>
+
+<p>
+  <b>Dob:</b>
+  <%= @patient.dob %>
+</p>
+
+
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<% if current_user %>
+  <% if can? :create, @patient %>
+    <%= link_to 'New Patient', new_patient_path %> |
+  <% end %>
+<% end %>
+<%= link_to 'Back', patients_path %>

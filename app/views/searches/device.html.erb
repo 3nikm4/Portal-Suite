@@ -1,0 +1,32 @@
+<% if !@results.nil? %>
+
+  <table class="pretty">
+    <tr>
+      <th>Device Serial</th>
+      <th>Status</th>
+      <th>Type</th>
+      <% if current_user.role?("Admin") %>
+        <th>Delete?</th>
+      <% end %>
+    </tr>
+
+    <tr class="<%= cycle('odd','even') %>">
+      <td><%= link_to @results.serial_number, edit_device_path(@results) %></td>
+      <td><%= link_to @results.device_status.device_status, edit_device_path(@results) %></td>
+      <td><%= link_to @results.device_type.device_type, edit_device_path(@results) %></td>
+      <% if current_user.role?("Admin") %>
+        <td><%= link_to 'Destroy', @results, confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+  </table>
+
+  <br />
+
+<% else %>
+
+  <h1>No Results Found</h1>
+
+  <p>Please go <%= link_to "back", search_path %>, and try a different search.</p>
+
+<% end %>
+

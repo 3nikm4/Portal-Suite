@@ -1,0 +1,33 @@
+<h1>Device Types</h1>
+
+<table>
+  <tr>
+    <th>Serial</th>
+    <th>Device Status</th>
+    <th>Problem Status</th>
+    <th>Type</th>
+    <th>Comment</th>
+    <th>IMSI</th>
+    <th>ICCID</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<%= paginate @devices %>
+
+<% @devices.each do |device| %>
+  <tr>
+    <td><%= device.serial_number %></td>
+    <td><%= device.device_status.device_status %></td>
+    <td><%= device.device_problems %></td>
+    <td><%= device.device_type.device_type %></td>
+    <td><%= device.comment %></td>
+    <td><%= device.imsi %></td>
+    <td><%= device.iccid %></td>
+    <td><%= link_to 'Show', device %></td>
+    <td><%= link_to 'Edit', edit_device_path(device) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

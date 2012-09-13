@@ -1,0 +1,59 @@
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+	  jQuery(".chosen").chosen();
+  });
+
+  jQuery(document).ready(function(){
+	  jQuery(".chosen2").chosen();
+  });
+</script>
+
+<%= form_for(@device_assignment) do |f| %>
+  <% if @device_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device_assignment.errors.count, "error") %> prohibited this device_assignment from being saved:</h2>
+
+      <ul>
+      <% @device_assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :device_id, "Devices" %><br />
+    <%= f.collection_select(:device_id, @devices, :id, :serial_number, options = { :prompt => "Select a Device" }, { :class => "chosen", :style => "width:200px;" } ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :patient_id, "Patients" %><br />
+    <%= f.collection_select(:patient_id, @patients, :id, :full_name_location, options = { :prompt => "Select a Patient" }, { :class => "chosen2", :style => "width:400px;" } ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location_id, "Location Name" %><br />
+    <%= f.collection_select(:location_id, Location.order("location_name ASC"), :id, :location_name, :prompt => true) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.date_select :end_date, {:include_blank => true} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :returned_date %><br />
+    <%= f.date_select :returned_date, {:include_blank => true} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

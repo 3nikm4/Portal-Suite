@@ -1,0 +1,33 @@
+<%= form_for(@device_problem) do |f| %>
+  <% if @device_problem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device_problem.errors.count, "error") %> prohibited this device_problem from being saved:</h2>
+
+      <ul>
+      <% @device_problem.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :device_id, "Device" %><br />
+    <%= f.collection_select(:device_id, Device.all, :id, :serial_number, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%= f.label :device_problem %><br />
+    <%= f.text_field :device_problem %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
+  </div>
+  <div class="field">
+    <%= f.label :device_problem_status_id %><br />
+    <%= f.collection_select(:device_problem_status_id, DeviceProblemStatus.all, :id, :device_problem_status, :prompt => true) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

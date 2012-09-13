@@ -1,0 +1,59 @@
+<h1>Device Assignments</h1>
+
+<div align="center">
+  <%= will_paginate @device_assignments %>
+</div>
+<br />
+
+<table class="pretty">
+  <tr>
+    <th><%= sortable "patients.last_name", "Patient" %></th>
+    <th><%= sortable "locations.location_name", "Location" %></th>
+    <th><%= sortable "devices.serial_number", "Device Serial" %></th>
+    <th><%= sortable "device_assignments.start_date", "Start Date" %></th>
+    <th><%= sortable "device_assignments.end_date", "End Date" %></th>
+
+    <th></th>
+    <% if can? :update, @device_assignment %>
+      <th></th>
+    <% end %>
+    <% if can? :destroy, @device_assignment %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @device_assignments.each do |device_assignment| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <% if !device_assignment.patient.nil? %>
+      <td><%= device_assignment.patient.last_name %>, <%= device_assignment.patient.first_name %></td>
+    <% elsif %>
+      <td></td>
+    <% end %>
+    <% if !device_assignment.location.nil? %>
+      <td><%= device_assignment.location.location_name %></td>
+    <% elsif %>
+      <td></td>
+    <% end %>
+    <td><%= device_assignment.device.serial_number %></td>
+    <td><%= device_assignment.start_date %></td>
+    <td><%= device_assignment.end_date %></td>
+    <td><%= device_assignment.returned_date %></td>
+    <td><%= link_to 'Show', device_assignment %></td>
+    <% if can? :update, @device_assignment %>
+      <td><%= link_to 'Edit', edit_device_assignment_path(device_assignment) %></td>
+    <% end %>
+    <% if can? :destroy, @device_assignment %>
+      <td><%= link_to 'Destroy', device_assignment, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div align="center">
+  <%= will_paginate @patient_assignments %>
+</div>
+<br />
+
+<%= link_to 'New Device assignment', new_device_assignment_path %>

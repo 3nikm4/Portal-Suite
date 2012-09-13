@@ -1,0 +1,16 @@
+<h1>RMA Devices</h1>
+
+<table>
+  <tr>
+    <th>Serial #</th>
+    <th>Status</th>
+  </tr>
+
+<% @devices.each do |device| %>
+  <tr bgcolor="#<%= cycle('c3c3c3','ffffff') %>">
+    <td><%= device.serial_number %></td>
+    <td><%= device.device_status.device_status %></td>
+  </tr>
+<% end %>
+</table>
+<br />

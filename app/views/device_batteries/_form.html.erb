@@ -1,0 +1,25 @@
+<%= form_for(@device_battery) do |f| %>
+  <% if @device_battery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device_battery.errors.count, "error") %> prohibited this device_battery from being saved:</h2>
+
+      <ul>
+      <% @device_battery.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :device_id %><br />
+    <%= f.number_field :device_id %>
+  </div>
+  <div class="field">
+    <%= f.label :device_battery_serial %><br />
+    <%= f.number_field :device_battery_serial %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

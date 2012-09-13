@@ -1,0 +1,28 @@
+<h1>Device Last Known Location</h1>
+
+<table class="reports">
+
+  <tr>
+    <th>Serial #</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Patient</th>
+    <th>Location</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
+
+<% @results.each do |device| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= device.serial_number %></td>
+    <td><%= device.device_type %></td>
+    <td><%= device.device_status %></td>
+    <td><%= device.patient_name %></td>
+    <td><%= device.location_name %></td>
+    <td><%= device.start_date %></td>
+    <td><%= device.end_date %></td>
+  </tr>
+<% end %>
+
+</table>
+<br />

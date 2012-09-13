@@ -1,0 +1,25 @@
+<p>
+  <b>Patient:</b>
+  <%= @patient_assignment.patient.patient_full_name %>
+</p>
+
+<p>
+  <b>Device:</b>
+  <%= @patient_assignment.device.serial_number %>
+</p>
+
+<p>
+  <b>Montior start:</b>
+  <%= @patient_assignment.monitor_start %>
+</p>
+
+<p>
+  <b>Monitor end:</b>
+  <%= @patient_assignment.monitor_end %>
+</p>
+
+
+<%= link_to 'Edit', edit_patient_assignment_path(@patient_assignment) %> |
+<%= link_to 'Back', patient_assignments_path %> |
+<%= link_to 'New Patient', new_patient_path %> |
+<%= link_to 'New Patient Assignment', new_patient_assignment_path %>

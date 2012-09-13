@@ -1,0 +1,48 @@
+<h1>Users</h1>
+
+<div align="center">
+  <%= will_paginate @users %>
+</div>
+<br />
+
+<table class="pretty">
+  <tr>
+    <th>Group</th>
+    <th><%= sortable "username", "Username" %></th>
+    <th><%= sortable "first_name", "First name" %></th>
+    <th><%= sortable "last_name", "Last name" %></th>
+    <th><%= sortable "email", "Email" %></th>
+    <th></th>
+    <% if can? :update, @device %>
+      <th></th>
+    <% end %>
+    <% if can? :destroy, @device %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= user.group.group_name %></td>
+    <td><%= user.username %></td>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.email %></td>
+    <td><%= link_to 'Show', user %></td>
+    <% if can? :update, @device %>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <% end %>
+    <% if can? :destroy, @device %>    
+      <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+<br />
+<div align="center">
+  <%= will_paginate @users %>
+</div>
+<br />
+<% if can? :update, @user %>
+  <%= link_to 'New User', new_user_path %>
+<% end %>

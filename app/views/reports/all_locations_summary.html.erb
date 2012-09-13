@@ -1,0 +1,33 @@
+<h1>Locations Summary Report</h1>
+
+<table class="reports">
+  <tr>
+    <th>Practice</th>
+    <th>Name</th>
+    <th>City</th>
+    <th width="10%">TeleSentry</th>
+
+    <th width="10%">Fusion</th>
+
+    <th width="10%">ER920w</th>
+
+
+  </tr>
+
+<% @locations.each do |location| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td align="center" width="15%"><%= location.practice.practice_name %></td>
+    <td align="center" width="15%"><%= location.location_name %></td>
+    <td align="center" width="15%">
+      <%= location.location_city %>, <%= location.location_state %>
+    </td>
+    <td align="center"><%= location.scottcare_count %></td>
+
+    <td align="center"><%= location.mct_count %></td>
+
+    <td align="center"><%= location.event_count %></td>
+
+
+  </tr>
+<% end %>
+</table>

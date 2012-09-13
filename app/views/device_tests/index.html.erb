@@ -1,0 +1,31 @@
+<h1>Listing device_tests</h1>
+
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Tom24</th>
+    <th>Forced</th>
+    <th>Enrolled</th>
+    <th>Completed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @device_tests.each do |device_test| %>
+  <tr>
+    <td><%= device_test.device_id %></td>
+    <td><%= device_test.tom24 %></td>
+    <td><%= device_test.forced %></td>
+    <td><%= device_test.enrolled %></td>
+    <td><%= device_test.completed %></td>
+    <td><%= link_to 'Show', device_test %></td>
+    <td><%= link_to 'Edit', edit_device_test_path(device_test) %></td>
+    <td><%= link_to 'Destroy', device_test, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device test', new_device_test_path %>

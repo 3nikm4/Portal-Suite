@@ -1,0 +1,37 @@
+<% if !@results.empty? %>
+  <h1>Search Results</h1>
+  <table class="pretty">
+    <tr>
+      <th>Patient/Contact</th>
+      <th>Call Start</th>
+      <th>Call End</th>
+      <th>Dx Rep</th>
+      <th>Direction</th>
+    </tr>
+
+  <% @results.each do |search| %>
+    <tr>
+      <td><%= link_to search.contact.full_name, search %></td>
+      <td><%= link_to search.call_start, search %></td>
+      <td><%= link_to search.call_end, search %></td>
+      <td><%= link_to search.user.full_name, search %></td>
+      <td>
+        <% if search.call_direction == false %>
+          <%= link_to 'Outbound', search %>
+        <% else %>
+          <%= link_to 'Inbound', search %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+<% else %>
+
+  <h1>No Results Found</h1>
+
+  <p>Please go <%= link_to "back", search_path %>, and try a different search.</p>
+
+<% end %>

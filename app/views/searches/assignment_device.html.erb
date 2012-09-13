@@ -1,0 +1,60 @@
+<% if !@results.empty? %>
+
+  <table class="pretty">
+    <tr>
+      <th>Device Serial</th>
+      <th>Patient</th>
+      <th>Location</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Returned Date</th>
+      <% if current_user.role?("Admin") %>
+        <th>Delete?</th>
+      <% end %>
+    </tr>
+
+  <% @results.each do |device_assignment| %>
+    <tr class="<%= cycle('odd','even') %>">
+      <td><%= link_to device_assignment.device.serial_number, edit_device_assignment_path(device_assignment) %></td>
+      <% if !device_assignment.patient.nil? %>
+        <td><%= link_to device_assignment.patient.last_name, edit_device_assignment_path(device_assignment) %>, <%= link_to device_assignment.patient.first_name, edit_device_assignment_path(device_assignment) %></td>
+      <% elsif %>
+        <td></td>
+      <% end %>
+      <% if !device_assignment.location.nil? %>
+        <td><%= link_to device_assignment.location.location_name, edit_device_assignment_path(device_assignment) %></td>
+      <% elsif %>
+        <td></td>
+      <% end %>
+      <% if !device_assignment.start_date.nil? %>
+        <td><%= link_to device_assignment.start_date, edit_device_assignment_path(device_assignment) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if !device_assignment.end_date.nil? %>
+        <td><%= link_to device_assignment.end_date, edit_device_assignment_path(device_assignment) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if !device_assignment.returned_date.nil? %>
+        <td><%= link_to device_assignment.returned_date, edit_device_assignment_path(device_assignment) %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if current_user.role?("Admin") %>
+        <td><%= link_to 'Destroy', device_assignment, confirm: 'Are you sure?', method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+<% else %>
+
+  <h1>No Results Found</h1>
+
+  <p>Please go <%= link_to "back", search_path %>, and try a different search.</p>
+
+<% end %>
+

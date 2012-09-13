@@ -1,0 +1,5 @@
+$('#patient_assignment_patient_id').empty();
+$('#patient_assignment_patient_id').append('<option value="">Select a Patient</option>')
+<% for patient in @patients %>
+      $('#patient_assignment_patient_id').append('<option value="<%= patient.id %>"><%= patient.patient_full_name %></option>')
+<% end %>

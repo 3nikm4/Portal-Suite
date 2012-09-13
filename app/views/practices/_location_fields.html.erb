@@ -1,0 +1,65 @@
+<div class="nested-fields">
+  <fieldset>
+    <legend>Location</legend>
+    <p>
+      <%= f.label :location_type_id %><br />
+      <%= f.collection_select(:location_type_id, LocationType.all, :id, :location_type, :prompt => true) %>
+    </p>
+    <p>
+      <%= f.label :location_name %><br />
+      <%= f.text_field :location_name %>
+    </p>
+    <p>
+      <%= f.label :location_street1 %><br />
+      <%= f.text_field :location_street1 %>
+    </p>
+    <p>
+      <%= f.label :location_street2 %><br />
+      <%= f.text_field :location_street2 %>
+    </p>
+    <p>
+      <%= f.label :location_city %><br />
+      <%= f.text_field :location_city %>
+    </p>
+    <p>
+      <%= f.label :location_state %><br />
+      <%= f.text_field :location_state %>
+    </p>
+    <p>
+      <%= f.label :location_zip %><br />
+      <%= f.text_field :location_zip %>
+    </p>
+    <p>
+      <%= f.label :location_contact %><br />
+      <%= f.text_field :location_contact %>
+    </p>
+    <p>
+      <%= f.label :par_level_scottcare %><br />
+      <%= f.number_field :par_level_scottcare %>
+    </p>
+    <p>
+      <%= f.label :par_level_mct %><br />
+      <%= f.number_field :par_level_mct %>
+    </p>
+    <p>
+      <%= f.label :par_level_event %><br />
+      <%= f.number_field :par_level_event %>
+    </p>
+    <p>
+      <%= f.label :alert_amount %><br />
+      <%= f.number_field :alert_amount %>
+    </p>
+    <p>
+      <%= f.label :active %><br />
+      <%= f.check_box :active %>
+    </p>
+
+    <p>
+      <%= link_to_remove_association "Remove Location", f %>
+      <% if !f.object.id.nil? %>     
+        &nbsp;|&nbsp;<%= link_to "Location Report", location_summary_path(f.object) %>
+      <% end %>
+    </p>
+
+  </fieldset>
+</div>

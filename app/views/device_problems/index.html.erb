@@ -1,0 +1,29 @@
+<h1>Listing device_problems</h1>
+
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Problem</th>
+    <th>Comment</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @device_problems.each do |device_problem| %>
+  <tr>
+    <td><%= device_problem.device.serial_number %>
+    <td><%= device_problem.device_problem %></td>
+    <td><%= device_problem.comment %></td>
+    <td><%= device_problem.device_problem_status.device_problem_status %></td>
+    <td><%= link_to 'Show', device_problem %></td>
+    <td><%= link_to 'Edit', edit_device_problem_path(device_problem) %></td>
+    <td><%= link_to 'Destroy', device_problem, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device problem', new_device_problem_path %>

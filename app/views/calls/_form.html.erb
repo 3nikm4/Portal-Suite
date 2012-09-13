@@ -1,0 +1,67 @@
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+	  jQuery(".chosen").chosen();
+  });
+</script>
+
+<%= form_for(@call) do |f| %>
+  <% if @call.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@call.errors.count, "error") %> prohibited this call from being saved:</h2>
+
+      <ul>
+      <% @call.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :call_direction %><br />
+    <%= f.check_box :call_direction %><%= f.label "Inbound?" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :call_start %><br />
+    <%= f.datetime_select :call_start, :default => Time.now %>
+  </div>
+  <br />
+
+  <div class="field">
+    <%= f.label :call_end %><br />
+    <%= f.datetime_select :call_end, :default => Time.now %>
+  </div>
+  <br />
+
+  <div class="field">
+    <%= f.label :contact_id %><br />
+    <%= f.collection_select(:contact_id, Contact.order("last_name ASC"), :id, :full_name_last, options = { :prompt => true }, { "class" => "chosen", "style" => "width:200px;" } ) %>
+    <p style="padding:1px;"><%= link_to "New Contact", new_contact_path %></p>
+  </div>
+  <br />
+
+  <div class="field">
+    <%= f.label :call_location_id %><br />
+    <%= f.collection_select(:call_location_id, CallLocation.all, :id, :call_location, options = { :prompt => true }, { "class" => "chosen", "style" => "width:200px;" } ) %>
+  </div>
+  <br />
+
+  <div class="field">
+    <%= f.label "Call Type" %><br />
+    <%= f.collection_select(:call_type_id, CallType.all, :id, :call_type, options = { :prompt => true }, { "class" => "chosen", "style" => "width:200px;" } ) %>
+  </div>
+  <br />
+
+  <div class="field">
+    <%= f.label :call_notes %><br />
+    <%= f.text_area :call_notes %>
+  </div>
+  <br />
+
+
+  <div class="actions">
+    <%= f.submit "Save and Continue" %>
+  </div>
+
+<% end %>

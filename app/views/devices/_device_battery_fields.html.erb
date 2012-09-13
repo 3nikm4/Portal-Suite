@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <fieldset>
+    <legend>Battery</legend>
+    <p>
+      <%= f.label :device_battery_serial, "Battery Serial" %><br />
+      <%= f.text_field :device_battery_serial %>
+    </p>
+    <%= link_to_remove_association "Remove Battery", f %>
+  </fieldset>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for(@call_location) do |f| %>
+  <% if @call_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@call_location.errors.count, "error") %> prohibited this call_location from being saved:</h2>
+
+      <ul>
+      <% @call_location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :call_location %><br />
+    <%= f.text_field :call_location %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

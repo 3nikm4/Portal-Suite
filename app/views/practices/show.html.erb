@@ -1,0 +1,11 @@
+<p>
+  <b>Practice name:</b>
+  <%= @practice.practice_name %>
+</p>
+
+<%= render @practice.locations %>
+
+<% if can? :update, @practice %>
+  <%= link_to 'Edit', edit_practice_path(@practice) %> |
+<% end %>
+<%= link_to 'Back', practices_path %>

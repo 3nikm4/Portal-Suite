@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Device:</b>
+  <%= @device_battery.device_id %>
+</p>
+
+<p>
+  <b>Device battery serial:</b>
+  <%= @device_battery.device_battery_serial %>
+</p>
+
+
+<%= link_to 'Edit', edit_device_battery_path(@device_battery) %> |
+<%= link_to 'Back', device_batteries_path %>

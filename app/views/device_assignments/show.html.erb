@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Patient:</b>
+  <% if !@device_assignment.patient.nil? %>
+    <%= @device_assignment.patient.patient_full_name %>
+  <% end %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <% if !@device_assignment.location.nil? %>
+    <%= @device_assignment.location.location_name %>
+  <% end %>
+</p>
+
+<p>
+  <b>Device Serial:</b>  
+  <%= @device_assignment.device.serial_number %>
+</p>
+
+<p>
+  <b>Start Date:</b>
+  <%= @device_assignment.start_date %>
+</p>
+
+<p>
+  <b>End Date:</b>
+  <%= @device_assignment.end_date %>
+</p>
+
+<p>
+  <b>Returned Date:</b>
+  <%= @device_assignment.returned_date %>
+</p>
+
+<%= link_to 'Edit', edit_device_assignment_path(@device_assignment) %> |
+<%= link_to 'Back', device_assignments_path %>

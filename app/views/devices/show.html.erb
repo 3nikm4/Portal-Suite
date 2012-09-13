@@ -1,0 +1,49 @@
+<p>
+  <b>Serial number:</b>
+  <%= @device.serial_number %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @device.device_status.device_status %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @device.device_type.device_type %>
+</p>
+
+<p>
+  <b>Carrier Type:</b>
+  <%= @device.device_carrier.device_carrier %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @device.comment %>
+</p>
+
+
+<% if @device.device_assignments %>
+  <%= render @device.device_assignments %>
+<% end %>
+
+<% if @device.device_test %>
+  <%= render @device.device_test %>
+<% end %>
+
+<% if @device.device_problems %>
+  <%= render @device.device_problems %>
+<% end %>
+
+<% if current_user %>
+  <% if can? :update, @device %>
+    <%= link_to 'Edit', edit_device_path(@device) %> |
+  <% end %>
+<% end %>
+<% if current_user %>
+  <% if can? :create, @device %>
+    <%= link_to 'New Device', new_device_path %> |
+  <% end %>
+<% end %>
+<%= link_to 'Back', devices_path %>

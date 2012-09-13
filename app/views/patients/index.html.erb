@@ -1,0 +1,52 @@
+<h1>Patients</h1>
+<div id="newcall_loc">
+ <%= link_to 'New Patient', new_patient_path, :class => "newcall" %>
+</div>
+<div align="center">
+  <%= will_paginate @patients %>
+</div>
+<br />
+
+<table class="pretty">
+  <tr>
+    <th><%= sortable "location_id", "Location" %></th>
+    <th><%= sortable "last_name", "Full Name" %></th>
+    <th>Street Address</th>
+    <th>&nbsp;</th>
+    <th>City</th>
+    <th><%= sortable "address_state", "State" %></th>
+    <th>Zip</th>
+    <th><%= sortable "dob", "DOB" %></th>
+    <th></th>
+    <% if can? :update, @patient %>
+      <th></th>
+    <% end %>
+    <% if can? :destroy, @patient %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @patients.each do |patient| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= patient.location.location_name %></td>
+    <td><%= patient.last_name %>, <%= patient.first_name %></td>
+    <td><%= patient.address_street1 %></td>
+    <td><%= patient.address_street2 %></td>
+    <td><%= patient.address_city %></td>
+    <td><%= patient.address_state %></td>
+    <td><%= patient.address_zip %></td>
+    <td><%= patient.dob %></td>
+    <td><%= link_to 'Show', patient %></td>
+    <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+    <td><%= link_to 'Destroy', patient, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<div align="center">
+  <%= will_paginate @patients %>
+</div>
+
+
+

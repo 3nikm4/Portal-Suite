@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Device:</b>
+  <%= @device_test.device_id %>
+</p>
+
+<p>
+  <b>Tom24:</b>
+  <%= @device_test.tom24 %>
+</p>
+
+<p>
+  <b>Forced:</b>
+  <%= @device_test.forced %>
+</p>
+
+<p>
+  <b>Enrolled:</b>
+  <%= @device_test.enrolled %>
+</p>
+
+<p>
+  <b>Completed:</b>
+  <%= @device_test.completed %>
+</p>
+
+
+<%= link_to 'Edit', edit_device_test_path(@device_test) %> |
+<%= link_to 'Back', device_tests_path %>

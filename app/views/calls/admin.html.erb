@@ -1,0 +1,81 @@
+<script>
+var limit="0:30"
+
+if (document.images){
+var parselimit=limit.split(":")
+parselimit=parselimit[0]*60+parselimit[1]*1
+}
+function beginrefresh(){
+if (!document.images)
+return
+if (parselimit==1)
+window.location.reload()
+else{ 
+parselimit-=1
+curmin=Math.floor(parselimit/60)
+cursec=parselimit%60
+if (curmin!=0)
+curtime=curmin+" minutes and "+cursec+" seconds left until page refresh!"
+else
+curtime=cursec+" seconds left until page refresh!"
+window.status=curtime
+setTimeout("beginrefresh()",1000)
+}
+}
+
+window.onload=beginrefresh
+</script>
+
+<div>
+<h1>WirelessDx Call  Log</h1>
+<div id="newcall_loc">
+  <%= link_to 'New Call', new_call_path, :class => "newcall" %>
+</div>
+</div>
+<div align="center"><%= will_paginate @calls %></div>
+<br />
+<table class="pretty">
+  <tr>
+    <th>User</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Type</th>
+    <th>Notes</th>
+    <th>Location</th>
+    <th>Direction</th>
+    <th>Contact</th>
+    <% if current_user.role?("Admin") %>
+      <th>Delete</th>
+    <% end %>
+  </tr>
+
+<% @calls.each do |call| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= link_to call.user.full_name, searches_path(:uid => call.user.id, :s => "rep") %></td>
+    <td><%= call.call_start %></td>
+    <td><%= call.call_end %></td>
+    <td><%= link_to call.call_type.call_type, searches_path(:uid => call.call_type_id, :s => "type") %></td>
+    <td><%= call.call_notes[0..29] %></td>
+    <td><%= call.call_location.call_location %></td>
+    <td>
+      <% if call.call_direction == false %>
+        Outbound
+      <% else %>
+        Inbound
+      <% end %>
+    </td>
+    <td><%= link_to call.contact.full_name, searches_path(:uid => call.contact.id, :s => "contact") %></td>
+    <% if current_user.role?("Admin") %>
+      <td><%= link_to 'Delete', call, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+  <tr><td colspan="9" align="right">Last Refreshed: <%= Time.now.to_s(:pretty) %></td></tr>
+</table>
+<br />
+
+
+
+<div align="center">
+  <%= will_paginate @calls %>
+</div>

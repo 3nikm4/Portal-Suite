@@ -1,0 +1,69 @@
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :practice_id %><br />
+    <%= f.number_field :practice_id %>
+  </div>
+  <div class="field">
+    <%= f.label :location_type_id %><br />
+    <%= f.number_field :location_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :location_name %><br />
+    <%= f.text_field :location_name %>
+  </div>
+  <div class="field">
+    <%= f.label :location_street1 %><br />
+    <%= f.text_field :location_street1 %>
+  </div>
+  <div class="field">
+    <%= f.label :location_street2 %><br />
+    <%= f.text_field :location_street2 %>
+  </div>
+  <div class="field">
+    <%= f.label :location_city %><br />
+    <%= f.text_field :location_city %>
+  </div>
+  <div class="field">
+    <%= f.label :location_state %><br />
+    <%= f.text_field :location_state %>
+  </div>
+  <div class="field">
+    <%= f.label :location_zip %><br />
+    <%= f.text_field :location_zip %>
+  </div>
+  <div class="field">
+    <%= f.label :location_contact %><br />
+    <%= f.text_field :location_contact %>
+  </div>
+  <div class="field">
+    <%= f.label :par_level_event %><br />
+    <%= f.number_field :par_level_event %>
+  </div>
+  <div class="field">
+    <%= f.label :par_level_mct %><br />
+    <%= f.number_field :par_level_mct %>
+  </div>
+  <div class="field">
+    <%= f.label :alert_amount %><br />
+    <%= f.number_field :alert_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

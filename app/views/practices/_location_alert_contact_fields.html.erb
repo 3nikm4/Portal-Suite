@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <fieldset>
+    <legend>Location</legend>
+    <p>
+      <%= f.label :user_id, "User" %><br />
+      <%= f.collection_select(:user_id, User.all, :id, :user_full_name, :prompt => true) %>
+    </p>
+    <p>
+      <%= link_to_remove_association "Remove Contact", f %>
+    </p>
+  </fieldset>
+</div>

@@ -1,0 +1,41 @@
+<h1>Practices</h1>
+<div id="newcall_loc">
+<% if can? :create, @practice %>
+  <%= link_to 'New Practice', new_practice_path, :class => "newcall"  %>
+<% end %>
+</div>
+<div align="center">
+  <%= will_paginate @practices %>
+</div>
+<br />
+
+<table class="pretty">
+  <tr>
+    <th>Practice name</th>
+    <th></th>
+    <% if can? :update, @practice %>
+      <th></th>
+    <% end %>
+    <% if can? :destroy, @practice %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @practices.each do |practice| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= practice.practice_name %></td>
+    <td><%= link_to 'Show', practice %></td>
+    <% if can? :update, @practice %>
+      <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
+    <% end %>
+    <% if can? :destroy, @practice %>
+      <td><%= link_to 'Destroy', practice, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+<br />
+
+<div align="center">
+  <%= will_paginate @practices %>
+</div>

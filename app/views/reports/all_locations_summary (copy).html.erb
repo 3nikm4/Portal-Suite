@@ -1,0 +1,33 @@
+<h1>Locations Summary Report</h1>
+
+<table class="report">
+  <tr>
+    <th>Practice</th>
+    <th>Name</th>
+    <th>City</th>
+    <th>TeleSentry Stock</th>
+    <th>TeleSentry Req.</th>
+    <th>Fusion Stock</th>
+    <th>Fusion Req.</th>
+    <th>ER920w Stock</th>
+    <th>ER920w Req.</th>
+    <th>Restock Amount</th>
+  </tr>
+
+<% @locations.each do |location| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td align="center" width="15%"><%= location.practice.practice_name %></td>
+    <td align="center" width="15%"><%= location.location_name %></td>
+    <td align="center" width="15%">
+      <%= location.location_city %>, <%= location.location_state %>
+    </td>
+    <td align="center"><%= location.scottcare_count %></td>
+    <td align="center"><%= location.par_level_scottcare %></td>
+    <td align="center"><%= location.mct_count %></td>
+    <td align="center"><%= location.par_level_mct %></td>
+    <td align="center"><%= location.event_count %></td>
+    <td align="center"><%= location.par_level_event %></td>
+    <td align="center"><%= location.alert_amount %></td>
+  </tr>
+<% end %>
+</table>

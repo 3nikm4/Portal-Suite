@@ -1,0 +1,17 @@
+<div class="nested-fields">
+  <fieldset>
+    <legend>Location</legend>
+    <p>
+      <%= f.label :location_id, "Location Name" %><br />
+      <%= f.collection_select(:location_id, Location.all, :id, :location_name, :prompt => true) %>
+    </p>
+    
+    <p>
+      <%= f.label :active, "Location Active?" %><br />
+      <%= f.check_box :active %>
+    </p>
+
+
+    <%= link_to_remove_association "Remove Location", f %>
+  </fieldset>
+</div>

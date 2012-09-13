@@ -1,0 +1,18 @@
+<p>
+  <b>Device problem:</b>
+  <%= @device_problem.device_problem %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @device_problem.comment %>
+</p>
+
+<p>
+  <b>Device problem status:</b>
+  <%= @device_problem.device_problem_status.device_problem_status %>
+</p>
+
+
+<%= link_to 'Edit', edit_device_problem_path(@device_problem) %> |
+<%= link_to 'Back', device_problems_path %>

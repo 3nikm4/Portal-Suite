@@ -1,0 +1,87 @@
+<%= form_for(@patient_assignment) do |f| %>
+  <% if @patient_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient_assignment.errors.count, "error") %> prohibited this Patient Assignment from being saved:</h2>
+
+      <ul>
+      <% @patient_assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  $("#patients").hide();
+  $("#devices").hide();
+  $("#_location_id").change(function() {
+
+    var data=$('#_location_id').val();
+    $.ajax({
+      type: "POST",
+       url: "http://"+location.host+"/dynamic_devices/"+data,
+      data: data,
+
+      beforeSend: function()
+        {
+        },
+
+      success: function(response)
+        {
+          $("#patient_assignment_device_id").html(response);
+          $("#devices").show();
+        }
+    });
+
+    $.ajax({
+      type: "POST",
+       url: "http://"+location.host+"/dynamic_patients/"+data,
+      data: data,
+
+      beforeSend: function()
+        {
+        },
+
+      success: function(response)
+        {
+          $("#patient_assignment_patient_id").html(response);
+          $("#patients").show();
+        }
+    });
+  });
+});
+</script>
+
+  <div class="field">
+    <%= f.label "Location" %><br />
+    <%= collection_select(nil, :location_id, @locations, :id, :location_name, :prompt => "Select a Location") %>
+  </div>
+
+  <div class="field" id="devices">
+    <%= f.label :device_id, "Devices" %><br />
+    <%= f.collection_select(:device_id, @devices, :id, :serial_number, :prompt => "Select a Device") %>
+  </div>
+
+  <div class="field" id="patients">
+    <%= f.label :patient_id, "Patients" %><br />
+    <%= f.collection_select(:patient_id, @patients, :id, :patient_full_name, :prompt => "Select a Patient") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monitor_start %><br />
+    <%= f.date_select :monitor_start %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monitor_end %><br />
+    <%= f.date_select :monitor_end %>
+  </div>
+  <br />
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

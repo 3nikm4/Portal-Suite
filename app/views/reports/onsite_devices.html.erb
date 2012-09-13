@@ -1,0 +1,21 @@
+<h1>Devices On-Site</h1>
+
+<table class="reports">
+
+  <tr>
+    <th>Device</th>
+    <th>Location</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
+
+<% @results.each do |device_assignment| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= device_assignment.device.serial_number %></td>
+    <td><%= device_assignment.location.location_name %></td>
+    <td><%= device_assignment.start_date %></td>
+    <td><%= device_assignment.end_date %></td>
+  </tr>
+<% end %>
+</table>
+<br />

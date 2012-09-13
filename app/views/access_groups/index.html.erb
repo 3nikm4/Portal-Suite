@@ -1,0 +1,21 @@
+<h1>Listing access_groups</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @access_groups.each do |access_group| %>
+  <tr>
+    <td><%= link_to 'Show', access_group %></td>
+    <td><%= link_to 'Edit', edit_access_group_path(access_group) %></td>
+    <td><%= link_to 'Destroy', access_group, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Access group', new_access_group_path %>

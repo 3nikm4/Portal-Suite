@@ -1,0 +1,35 @@
+<div ="nested_partial">
+  <fieldset>
+    <legend>Device Assignment</legend>
+
+    <% if !device_assignment.location.nil? %>
+      <p>
+        <b>Location:</b>
+        <%= device_assignment.location.location_name %>
+      </p>
+    <% end %>
+
+    <% if !device_assignment.patient.nil? %>
+      <p>
+        <b>Device:</b>
+        <%= device_assignment.patient.patient_full_name %>
+      </p>
+    <% end %>
+
+    <p>
+      <b>Start Date</b>
+      <%= device_assignment.start_date %>
+    </p>
+
+    <p>
+      <b>End Date</b>
+      <%= device_assignment.end_date %>
+    </p>
+
+    <p>
+      <b>Returned Date</b>
+      <%= device_assignment.returned_date %>
+    </p>
+
+  </fieldset>
+</div>

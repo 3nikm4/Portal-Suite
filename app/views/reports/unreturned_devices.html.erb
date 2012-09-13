@@ -1,0 +1,22 @@
+<h1>Unreturned Devices</h1>
+
+<table class="reports">
+  <tr>
+    <th>Device</th>
+    <th>Patient</th>
+    <th>Location</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
+
+<% @device_assignments.each do |assignment| %>
+  <tr class="<%= cycle('odd','even') %>">
+    <td><%= assignment.device.serial_number %></td>
+    <td><%= assignment.patient.patient_full_name %></td>
+    <td><%= assignment.patient.location.location_name %></td>
+    <td><%= assignment.start_date %></td>
+    <td><%= assignment.end_date %></td>
+  </tr>
+<% end %>
+</table>
+<br />

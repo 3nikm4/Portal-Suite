@@ -1,0 +1,21 @@
+<% if f.object.completed != true %>
+  <div class="nested-fields">
+    <fieldset>
+      <legend>Testing</legend>
+      <p>
+        <%= f.label :forced, "Forced?" %>
+        <%= f.check_box :forced %>
+
+        <%= f.label :tom24, "In Tom24?" %>
+        <%= f.check_box :tom24 %>
+
+        <%= f.label :enrolled, "Enrolled?" %>
+        <%= f.check_box :enrolled %>
+
+        <%= f.label :completed, "Completed?" %>
+        <%= f.check_box :completed %>
+      </p>
+      <%= link_to_remove_association "Remove Test", f %>
+    </fieldset>
+  </div>
+<% end %>

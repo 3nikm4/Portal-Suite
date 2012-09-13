@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+  </div>
+  <div id="top_nav">
+    <% if current_user %>
+      Logged in as: <strong><%= current_user.user_full_name %></strong>, your current role: <%= current_user.role %>
+      <%= link_to "Logout", log_out_path %>
+    <% else %>
+      <%= link_to "Login", log_in_path %>
+    <% end %>
+  </div>
+  <div id="side_nav">
+    <% if current_user %>
+      <%= link_to "Devices", devices_path, :class => "link" %><br />
+      <% if can? :create, @device %>
+      <%= link_to "New Device", new_device_path, :class => "sublink" %><br />
+      <% end %>
+      <%= link_to "Disposables", disposables_path, :class => "link" %><br />
+      <% if can? :create, @disposable %>
+      <%= link_to "New Disposable", new_disposable_path, :class => "sublink" %><br />
+      <% end %>
+      <%= link_to "Patients", patients_path, :class => "link" %><br />
+      <% if can? :create, @patient %>
+      <%= link_to "New Patient", new_patient_path, :class => "sublink" %><br />
+      <% end %>
+      <%= link_to "Patient Assignments", patient_assignments_path, :class => "link" %><br />
+      <% if can? :create, @patient_assignment %>
+      <%= link_to "New Assignment", new_patient_assignment_path, :class => "sublink" %><br />
+      <% end %>
+      <%= link_to "Practices", practices_path, :class => "link" %><br />
+      <% if can? :create, @practice %>
+      <%= link_to "New Practice", new_practice_path, :class => "sublink" %><br />
+      <% end %>
+      <% if can? :update, @user %>
+      <%= link_to "Users", users_path, :class => "link" %><br />
+      <% end %>
+      <% if can? :create, @user %>
+      <%= link_to "New User", new_user_path, :class => "sublink" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="errors">
+    <% flash.each do |name, msg| %>
+      <span id="notice"><%= content_tag :div, msg, :id => "flash_#{name}" %></span>
+    <% end %>
+  </div>
+  <div id="content">
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

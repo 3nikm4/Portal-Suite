@@ -1,0 +1,44 @@
+<%= form_for(@patient_assignment) do |f| %>
+  <% if @patient_assignment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient_assignment.errors.count, "error") %> prohibited this Patient Assignment from being saved:</h2>
+
+      <ul>
+      <% @patient_assignment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" id="devices">
+    <%= f.label :device_id, "Devices" %><br />
+    <%= f.collection_select(:device_id, @devices, :id, :serial_number, :prompt => "Select a Device") %>
+  </div>
+
+  <div class="field" id="patients">
+    <%= f.label :patient_id, "Patients" %><br />
+    <%= f.collection_select(:patient_id, @patients, :id, :patient_full_name, :prompt => "Select a Patient") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monitor_start %><br />
+    <%= f.date_select :monitor_start %>
+  </div>
+
+  <div class="field">
+    <%= f.label :monitor_end %><br />
+    <%= f.date_select :monitor_end, {:include_blank => true} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :active, "Active" %>
+    <%= f.check_box :active %>
+  </div>
+  <br />
+  
+  <div class="actions">
+    <%= f.submit "Update Patient Assignment" %>
+  </div>
+
+<% end %>

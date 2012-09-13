@@ -1,0 +1,45 @@
+<h1>Disposables</h1>
+<div id="newcall_loc">
+ <%= link_to 'New Disposable', new_disposable_path, :class => "newcall" %>
+</div>
+<div align="center">
+  <%= will_paginate @disposables %>
+</div>
+<br />
+
+<table class="pretty">
+  <tr>
+    <th><%= sortable "disposable_type_id", "Type" %></th>
+    <th>Location</th>
+    <th>Amount</th>
+    <th>Par level</th>
+    <th>Alert amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @disposables.each do |disposable| %>
+  <tr>
+    <td><%= disposable.disposable_type.disposable_type %></td>
+    <td><%= disposable.location.location_name %></td>
+    <td><%= disposable.amount %></td>
+    <td><%= disposable.par_level %></td>
+    <td><%= disposable.alert_amount %></td>
+    <td><%= link_to 'Show', disposable %></td>
+<% if can? :update, @disposable %>
+    <td><%= link_to 'Edit', edit_disposable_path(disposable) %></td>
+<% end %>
+<% if can? :destroy, @disposable %>
+    <td><%= link_to 'Destroy', disposable, confirm: 'Are you sure?', method: :delete %></td>
+<% end %>
+  </tr>
+<% end %>
+</table>
+
+<div align="center">
+  <%= will_paginate @disposables %>
+</div>
+<br />
+
+
